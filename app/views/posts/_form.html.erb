@@ -1,0 +1,58 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="form__item">
+
+
+  <div class="form__block">
+    <%# <%= form.label :image %>
+    <h4 class="form__block__title">Загрузите изображение</h4>
+    <%= form.file_field :image, :class => "" %>
+  </div>
+
+<!-- тут были классы field вместо form__block -->
+  <div class="form__block">
+    <%# <%= form.label :name %>
+    <h4 class="form__block__title">Тема</h4>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="form__block">
+    <%# <%= form.label :title %>
+    <h4 class="form__block__title">Заголовок </h4>
+    <%= form.text_field :title %>
+  </div>
+
+<!--я везде автора закомментировала пока в посте он не нужен. Олеся-->
+  <!-- <div class="field">
+  	<%= form.label :author %>
+  	<%= form.text_field :author %>
+  </div> -->
+
+  <div class="form__block">
+    <%# <%= form.label :content %>
+    <h4 class="form__block__title">Текст</h4>
+    <%= form.text_area :content %>
+  </div>
+  </div>
+
+
+
+
+
+
+  <div class="actions">
+    <%= form.submit%>
+  </div>
+<% end %>

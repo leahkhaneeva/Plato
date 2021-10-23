@@ -1,0 +1,64 @@
+<%= stylesheet_link_tag "posts" %>
+<p id="notice"><%= notice %></p>
+<div class="header">
+<div class="promo">
+  <a href="promo">Промо</a>
+</div>
+<div class="about">
+  <a href="about">О нас</a>
+</div>
+<div class="publ">
+  <a href="#">Подборки</a>
+</div>
+
+</div>
+
+<h1>Подборки</h1>
+
+
+
+
+
+
+
+
+
+<table>
+  <!-- <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead> -->
+  <tbody class="posts">
+    <% @posts.each do |post| %>
+      <tr class="posts__item">
+        <td>
+          <%# <%= image_tag( post.image.thumb.url, alt: 'Image' , :class => "posts__item__img")=%>
+        </td>
+        <td class="posts__item__text posts__item__text-theme"><%= post.name %></td>
+        <td class="posts__item__text posts__item__text-title"><%= post.title %></td>
+        <!-- <td class="posts__item__text">
+        </td> -->
+         <!-- <td class="posts__item__text"><%= post.content.html_safe %></td>  -->
+
+
+
+
+        <td class="posts__item__links">
+          <%= link_to 'читать', post, :class =>"link" %>
+          <%= link_to 'изменить', edit_post_path(post), :class =>"link" %>
+          <%= link_to 'удалить', post, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"link" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="top">
+  <%= link_to 'создать пост', new_post_path, :class => "create-post" %>
+
+</div>

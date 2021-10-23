@@ -1,0 +1,39 @@
+<!-- <div class="comment-body">
+	<div class="comment-body__author">
+		<p>
+		  <b>Commenter:</b>
+		</p>
+
+		<p>22:57</p>
+	</div>
+
+
+	<p class="comment-body__content">
+		<!-- <b>Комментарий:</b> -->
+		<%= comment.body %>
+	</p>
+  <div class="comment-body__remove">
+
+		<p>
+		  <%= link_to 'Destroy Comment', [comment.post, comment],
+		               :confirm => 'Are you sure?',
+		               :method => :delete %>
+		</p>
+		<% end %>
+  </div>
+</div>
+
+
+
+<!-- alternative version -->
+<!-- <div class="comment-body__remove">
+<% if current_user.id == comment.user_id %>
+	<% if user_signed_in? && current_user.id == comment.user_id  %>
+	<p>
+		<%= link_to 'Destroy Comment', [comment.post, comment],
+								 :confirm => 'Are you sure?',
+								 :method => :delete %>
+	</p>
+	<% end %>
+<% end %>
+</div> --> -->
