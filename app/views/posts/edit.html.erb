@@ -1,22 +1,15 @@
 <%= stylesheet_link_tag "posts" %>
-  <div class="header">
-      <h1>Подборки</h1>
-<div class="promo">
-  <a href="#">Промо</a>
-</div>
-<div class="about">
-  <a class="pages" href="#">О нас</a>
-</div>
-<div class="publ">
-  <a href="#">Подборки</a>
-</div>
 
-</div>
-<div class="edit">
-Редактирование поста
-</div>
+<div class="edit_post_container">
+
+<h1>Редактирование поста</h1>
+
 
 <%= render 'form', post: @post %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<div class="edit_back_buttons">
+
+<%= link_to 'Читать', @post %> 
+<%= link_to 'Назад', posts_path %>
+</div>
+</div>

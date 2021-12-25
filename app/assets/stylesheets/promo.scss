@@ -263,8 +263,10 @@ top: 1370px;
 }
 .form-split3 input{
   display: block;
-  height: 76%;
+  height: 10%;
   width:652px;
+  top: 0%;
+  left:0%;
   border: 3px solid #2C3CC8;
   background: white;
   border-radius: 49px;
@@ -274,6 +276,7 @@ top: 1370px;
   padding-left: 70%;
   padding-top: 0.6%;
 }
+
 .submit{
   display: block;
   position: absolute;

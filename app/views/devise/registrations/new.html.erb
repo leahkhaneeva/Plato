@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag "users" %>
+<div class="sign_up_container">
+<h1>Зарегистрироватья</h1>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+      <%= f.label :username, "Имя" %><br />
+      <%= f.text_field :username, autocomplete: "username" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "Почта" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "Пароль" %>
+    <% if @minimum_password_length %>
+    <em>(минимум <%= @minimum_password_length %> символов)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Подтвердите пароль" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Зарегистрироваться", class: "button_sign_up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+</div>

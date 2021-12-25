@@ -14,7 +14,6 @@
 
 <div class="form__item">
 
-
   <div class="form__block">
     <%# <%= form.label :image %>
     <h4 class="form__block__title">Загрузите изображение</h4>
@@ -24,23 +23,28 @@
 
   <div class="form__block">
     <%# <%= form.label :name %>
-    <h4 class="form__block__title">Тема</h4>
+    <h4 class="form__block__title">Теги</h4>
     <%= form.text_field :name %>
   </div>
 
   <div class="form__block">
     <%# <%= form.label :title %>
-    <h4 class="form__block__title">Заголовок </h4>
+    <h4 class="form__block__title">Заголовок</h4>
     <%= form.text_field :title %>
   </div>
 
+  <div class="field">
+      <h4 class="form__block__title">Категория</h4>
+      <%= form.select :category_id, Category.pluck(:name, :id) %>
+  </div>
 
 
   <div class="form__block">
     <%# <%= form.label :content %>
     <h4 class="form__block__title">Текст</h4>
-    <%= form.text_area :content %>
+    <%= form.cktext_area :content %>
   </div>
+
   </div>
 
 
@@ -49,6 +53,6 @@
 
 
   <div class="actions">
-    <%= form.submit%>
+    <%= form.submit 'Обновить', class: "button_update_post" %>
   </div>
 <% end %>

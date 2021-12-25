@@ -1,0 +1,51 @@
+<%= stylesheet_link_tag "categories" %>
+<p id="notice"><%= notice %></p>
+
+
+
+<!-- <p>
+  <strong></strong>
+  <%= @category.name %>
+</p>
+
+<p>
+  <strong></strong>
+  <%= @category.description %>
+</p> -->
+
+<%# <p>
+  <strong>Display in navbar:</strong>
+  <%= @category.display_in_navbar %>
+<div class="show_category_container">
+
+  <table>
+    <thead class="plashka">
+      <tr>
+        <th>Название</th>
+        <th>Описание</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= @category.name %></td>
+          <td><%= @category.description %></td>
+
+
+        </tr>
+    </tbody>
+    </div>
+
+
+
+
+  </table>
+
+<div class="edit_back_buttons">
+<% if user_signed_in? && current_user.isadmin == true %>
+<%= link_to 'Изменить', edit_category_path(@category) %>
+<% end %>
+
+<%= link_to 'Назад', categories_path %>
+
+</div>

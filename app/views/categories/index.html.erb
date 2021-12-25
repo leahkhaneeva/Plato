@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag "categories" %>
+<p id="notice"><%= notice %></p>
+
+
+<div class="categories_container">
+
+
+
+<h1>Категории</h1>
+<% if user_signed_in? && current_user.isadmin == true %>
+<div class="button_newcategory">
+<%= link_to 'Добавить', new_category_path %>
+</div>
+<% end %>
+<div class="razdel"><p>Все категории</p></div>
+
+<table>
+  <thead class="plashka">
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <%# <th>Display in navbar</th> %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.description %></td>
+        <td><%= link_to 'Открыть', category %></td>
+        <% if user_signed_in? && current_user.isadmin == true %>
+        <td><%= link_to 'Удалить', category, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+</div>

@@ -1,53 +1,68 @@
 <%= stylesheet_link_tag "posts" %>
 <p id="notice"><%= notice %></p>
 
-<div class="header">
-    <h1>Подборки</h1>
-<div class="promo">
-<a href="#">Промо</a>
-</div>
-<div class="about">
-<a class="pages" href="#">О нас</a>
-</div>
-<div class="publ">
-<a href="#">Подборки</a>
-</div>
-</div>
 
 
+   <div class="show_post_container">
 
-   <div class="view-post">
-      <p class="view-post__name">
-       <%= @post.name %>
+     <p class="view_post_category">
+       <strong></strong>
+       <%= @post.category.name %>
      </p>
-      <div class="view-post__img">
-        <%= image_tag(@post.image.url, alt: 'Image', :class => "post-pic" ) if @post.image? %>
-      </div>
 
+     <div class="view-post__title">
+       <h2>
+         <%= @post.title %>
+       </h2>
+     </div>
 
-      <div class="view-post__discript">
-
-
-        <div class="view-post__title">
-          <h2>
-            <%= @post.title %>
-          </h2>
-        </div>
-
-        <div class="rect"></div>
-
+     <div class="view-post__img">
+       <%= image_tag(@post.image.url, alt: 'Image', :class => "post-pic" ) if @post.image? %>
+     </div>
 
        <div class="view-post__content">
          <p>
            <%= @post.content.html_safe %>
          </p>
        </div>
+       <p class="view_post_name">
+        <%= @post.name %>
+       </p>
 
-      </div>
 
+
+  <% if user_signed_in? && current_user.isadmin == false %>
+  <% pre_favorite = @post.favorites.find { |favorite| favorite.user_id == current_user.id} %>
+  <% if pre_favorite %>
+  <%= button_to 'Удалить из избранного',  post_favorite_path(@post, pre_favorite), method: :delete, class: "button_create_comment" %>
+  <% else %>
+  <%= button_to 'Добавить в избранное', post_favorites_path(@post), method: :post, class: "button_create_comment" %>
+
+  <% end %>
+  <% end %>
+
+  <div class="edit_back_buttons">
+
+  <% if user_signed_in? && current_user.isadmin == true %>
+  <%= link_to 'Изменить', edit_post_path(@post)  %>
+  <% end %>
+  <%= link_to 'Назад', posts_path %>
   </div>
 
 
-  <div class="final-actions">
-  <%= link_to 'Назад', posts_path %>
+
+<div class="comments">
+  <h2>Комментарии</h2>
+  <%= render @post.comments %>
+
+<% if user_signed_in? %>
+<%= render "comments/form" %>
+<% else %>
+<p><%= link_to 'Войдите в аккаунт', new_user_session_path %> или <%= link_to 'зарегистрируйтесь', new_user_registration_path %>, чтобы оставить комментарий.</p>
+<% end %>
+</div>
+
+
+
+
 </div>

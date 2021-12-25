@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag "users" %>
+
+
+<div class="users_container">
+  <h1>Люди</h1>
+  <div class="button_newuser">
+  <%= link_to 'Добавить автора', new_category_path %>
+  </div>
+  <div class="razdel"><p>Пользователи</p></div>
+
+
+<table>
+  <thead class="plashka">
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Почта</th>
+      <th>Cтатус</th>
+      <th></th>
+      <th></th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= link_to user.email, user %></td>
+        <td><%= (user.isadmin) == true ? "Администратор" : "Пользователь" %></td>
+        <td><%= link_to 'Открыть', user %></td>
+        <td><%= link_to 'Удалить', user, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>

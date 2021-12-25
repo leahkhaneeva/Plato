@@ -1,64 +1,81 @@
 <%= stylesheet_link_tag "posts" %>
 <p id="notice"><%= notice %></p>
-<div class="header">
+
+
+
+
+<!-- <div class="header">
 <div class="promo">
   <a href="promo">Промо</a>
 </div>
 <div class="about">
   <a href="about">О нас</a>
 </div>
-<div class="publ">
-  <a href="#">Подборки</a>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="posts_container">
+
+
+<h1>Посты</h1>
+<% if user_signed_in? && current_user.isadmin == true %>
+<div class="button_newpost">
+  <%= link_to 'Добавить пост', new_post_path, :class => "create-post" %>
+  <%# <%= link_to 'добавить категории', new_category_path %>
 </div>
-
-</div>
-
-<h1>Подборки</h1>
-
-
-
-
-
-
-
-
-
+<% end %>
+<div class="razdel"><p>Все посты</p></div>
 <table>
-  <!-- <thead>
+  <thead class="plashka">
     <tr>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Content</th>
-      <th colspan="3"></th>
+      <th>Название</th>
+      <th>Категория</th>
+      <th>Тег</th>
+      <th>Дата</th>
+      <th colspan="4"></th>
     </tr>
-  </thead> -->
+  </thead>
+
   <tbody class="posts">
     <% @posts.each do |post| %>
       <tr class="posts__item">
-        <td>
-          <%# <%= image_tag( post.image.thumb.url, alt: 'Image' , :class => "posts__item__img")=%>
-        </td>
-        <td class="posts__item__text posts__item__text-theme"><%= post.name %></td>
+
         <td class="posts__item__text posts__item__text-title"><%= post.title %></td>
+        <td><%= post.category.name %></td>
+        <td class="posts__item__text posts__item__text-theme"><%= post.name %></td>
+
+        <!-- <td><%= post.content.html_safe %></td> -->
+        <!-- <td><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comment' : 'Commentes'%></td> -->
         <!-- <td class="posts__item__text">
         </td> -->
          <!-- <td class="posts__item__text"><%= post.content.html_safe %></td>  -->
-
-
-
-
+        <td><%=post.created_at.strftime("%d.%m.%y")%></td>
         <td class="posts__item__links">
-          <%= link_to 'читать', post, :class =>"link" %>
-          <%= link_to 'изменить', edit_post_path(post), :class =>"link" %>
-          <%= link_to 'удалить', post, method: :delete, data: { confirm: 'Are you sure?' }, :class =>"link" %>
+          <%= link_to 'Читать', post, :class =>"link" %>
+          <% if user_signed_in? && current_user.isadmin == true %>
+          <%= link_to 'Изменить', edit_post_path(post), :class =>"link" %>
+          <% end %>
+          <% if user_signed_in? && current_user.isadmin == true %>
+          <%= link_to 'Удалить', post, method: :delete, data: { confirm: 'Вы уверены?' }, :class =>"link" %>
+          <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<div class="top">
-  <%= link_to 'создать пост', new_post_path, :class => "create-post" %>
+
 
 </div>

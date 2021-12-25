@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag "categories" %>
+<div class="edit_category_container">
+
+<h1>Изменить категорию</h1>
+
+<%= render 'form', category: @category %>
+
+<div class="edit_back_buttons">
+<%= link_to 'Открыть', @category %>
+<%= link_to 'Назад', categories_path %>
+</div>
+</div>
