@@ -16,6 +16,7 @@ class M_Posts_Recommendations_Orange extends React.Component {
                   <p>В&nbsp;Москве открылось крошечное бистро Mini Turkish Spot, вдохновленное турецким стритфудом и&nbsp;атмосферой Стамбула.</p></div>
                   <a href="/posts/9"><div className="big-post-button"> <p>Читать больше</p></div></a>
                   <div className="big-post-date"><p>22.05.2022</p></div>
+
                 </div>
             </div>
 
