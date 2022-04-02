@@ -4,12 +4,27 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    if params.has_key?(:category)
-      @category = Category.find_by_name(params[:category])
-      @posts = Post.where(category: @category)
+    if params[:category_id]
+      # @category = Category.find params[:category_id]
+      @posts = Post.where("category_id = ?", params[:category_id])
+      # @posts = @category.posts
     else
-      @posts = Post.all
+      @posts = Post.where(nil)
+      filtering_params(params).each do |key, value|
+      @posts = @posts.public_send("filter_by_#{key}", value) if value.present?
     end
+
+  end
+  @recpost = @posts.find_by(id: 1)
+  @recpost2 = @posts.find_by(id: 2)
+  @recpost3 = @posts.find_by(id: 9)
+  @recpost4 = @posts.find_by(id: 4)
+    # if params.has_key?(:category)
+    #   @category = Category.find_by_name(params[:category])
+    #   @posts = Post.where(category: @category)
+    # else
+    #   @posts = Post.all
+    # end
   end
 
   # GET /posts/1 or /posts/1.json
@@ -31,7 +46,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully created." }
+        format.html { redirect_to @post, notice: "Пост создан" }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,7 +59,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: "Post was successfully updated." }
+        format.html { redirect_to @post, notice: "Ура" }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,12 +72,15 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to posts_url, notice: "Увы" }
       format.json { head :no_content }
     end
   end
 
   private
+  def filtering_params(params)
+    params.slice(:user, :category, :starts_with)
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
@@ -72,4 +90,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:name, :title, :content, :image, :category_id)
     end
+
 end

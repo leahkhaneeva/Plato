@@ -3,31 +3,13 @@
 
 
 
-   <div class="show_post_container">
 
-     <p class="view_post_category">
-       <strong></strong>
-       <%= @post.category.name %>
-     </p>
 
-     <div class="view-post__title">
-       <h2>
-         <%= @post.title %>
-       </h2>
-     </div>
 
-     <div class="view-post__img">
-       <%= image_tag(@post.image.url, alt: 'Image', :class => "post-pic" ) if @post.image? %>
-     </div>
 
-       <div class="view-post__content">
-         <p>
-           <%= @post.content.html_safe %>
-         </p>
-       </div>
-       <p class="view_post_name">
-        <%= @post.name %>
-       </p>
+
+
+     <%= react_component 'O_PostPart', { post: @post } %>
 
 
 
@@ -46,23 +28,4 @@
   <% if user_signed_in? && current_user.isadmin == true %>
   <%= link_to 'Изменить', edit_post_path(@post)  %>
   <% end %>
-  <%= link_to 'Назад', posts_path %>
   </div>
-
-
-
-<div class="comments">
-  <h2>Комментарии</h2>
-  <%= render @post.comments %>
-
-<% if user_signed_in? %>
-<%= render "comments/form" %>
-<% else %>
-<p><%= link_to 'Войдите в аккаунт', new_user_session_path %> или <%= link_to 'зарегистрируйтесь', new_user_registration_path %>, чтобы оставить комментарий.</p>
-<% end %>
-</div>
-
-
-
-
-</div>

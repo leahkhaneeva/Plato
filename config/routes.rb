@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :follows
-  resources :categories
+  resources :categories do
+    resources :posts
+  end
+
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
 
@@ -27,6 +30,10 @@ Rails.application.routes.draw do
 
   get 'promo', to: 'promo#index'
   get 'about', to: 'about#index'
+  get 'restaurants', to: 'restaurants#index'
+  get 'cafes', to: 'cafes#index'
+  get 'bars', to: 'bars#index'
+  get 'dishes', to: 'dishes#index'
 
 
 

@@ -26,31 +26,33 @@
 
 
 
-    <div class="sidebar">
-      <p><%= link_to 'Посты', posts_path %></p>
-      <p><%= link_to 'Теги', categories_path %></p>
-      <p><%= link_to 'Категории', categories_path %></p>
-      <% if user_signed_in? && current_user.isadmin == true %>
-      <p><%= link_to 'Люди', users_path %></p>
-      <% end %>
-      </div>
+  <%= react_component 'O_Topmenu'%>
+
+
+
+  <% if user_signed_in? && current_user.isadmin == true %>
+     <p><%= link_to 'Посты', posts_path %></p>
+     <p><%= link_to 'Теги', categories_path %></p>
+     <p><%= link_to 'Категории', categories_path %></p>
+     <% if user_signed_in? && current_user.isadmin == true %>
+     <p><%= link_to 'Люди', users_path %></p>
+     <% end %>
+   <% end %>
 
 
 
 
-<div class="top_menu">
-  <div class="logo"></div>
-  <div class="acc">
 
-  <% if user_signed_in? %>
-    <%= link_to 'Аккаунт', current_user %>  <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Войти', new_user_session_path %>  <%= link_to 'Зарегистрироваться', new_user_registration_path %>
-  <% end %>
-  </div>
-  </div>
+
+
+
+
 
 
     <%= yield %>
+    <%= react_component 'O_Footer'%>
+
+
+
   </body>
 </html>
