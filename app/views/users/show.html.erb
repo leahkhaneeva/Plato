@@ -4,65 +4,32 @@
 <div class="users_container">
 
   <% if user_signed_in? %>
-   <%= link_to 'Аккаунт', current_user %>  <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
+   <div class="signout"><%= link_to 'Выйти', destroy_user_session_path, method: :delete %></div>
  <% else %>
    <%= link_to 'Войти', new_user_session_path %>  <%= link_to 'Зарегистрироваться', new_user_registration_path %>
  <% end %>
+
+  <div class="userphoto"></div>
+  <div class="usernamebox">
+  <h2>Борис</h2>
+  <a href="/users/edit"><div class="editicon"></div></a>
+  </div>
+  <% if user_signed_in? && current_user.isadmin == true %>
+     <div class="admin"><%= (@user.isadmin) == true ? "(Администратор)" : "Пользователь" %></div>
+  <% end %>
+  <div class="addcollection"></div>
+  <div class="collectionsrow1">
+    <div class="collection1"></div>
+    <div class="collection2"></div>
+    <div class="collection3"></div>
+    <div class="collection4"></div>
+  </div>
+  <div class="collectionsrow2">
+    <div class="collection5"></div>
+    <div class="collection6"></div>
+    <div class="collection7"></div>
+    <div class="collection8"></div>
+  </div>
+
+
  </div>
-
-  <table>
-    <thead class="plashka">
-      <tr>
-        <th>ID</th>
-        <th>Имя</th>
-        <th>Почта</th>
-        <th>Cтатус</th>
-        <th>Подписчики</th>
-        <th>Подписки</th>
-        <th>Избранные</th>
-
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><%= @user.id %></td>
-          <td><%= @user.username %></td>
-          <td><%= @user.email %></td>
-          <td><% if user_signed_in? && current_user.isadmin == true %>
-             <%= (@user.isadmin) == true ? "Администратор" : "Пользователь" %>
-          <% end %></td>
-          <td><%= @user.followers.count %></td>
-          <td><%= link_to @user.followees.count, following_path %></td>
-          <td><%= @user.favorites.count %></td>
-
-
-        </tr>
-    </tbody>
-
-
-
-
-  </table>
-
-
-
-
-<% if user_signed_in? && @user.id == current_user.id %>
-    <%= link_to 'Изменить', edit_user_registration_path %>
-<% elsif user_signed_in? && current_user.followees.include?(@user) %>
-<%= link_to 'Назад', users_path %>
-
-    <h5><%= button_to "Отписаться", unfollow_user_path, method: "POST", class: "button_follow" %></h5>
-<% elsif user_signed_in? %>
-    <h5><%= button_to "Подписаться", follow_user_path, method: "POST", class: "button_follow"  %></h5>
-<% else %>
-
-<%# можно добавить кнопку для регистрации или что-нибудь ещё  %>
-<% end%>
-<div class="edit_back_buttons">
-<%= link_to 'Назад', users_path %>
-
-</div>
-
-
-</div>

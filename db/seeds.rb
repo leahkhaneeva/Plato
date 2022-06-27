@@ -1,4 +1,5 @@
-Post.destroy_all
+# Post.destroy_all
+Comment.destroy_all
 puts "Destroyed everything you touch"
 
 #Var1

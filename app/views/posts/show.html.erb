@@ -12,16 +12,31 @@
      <%= react_component 'O_PostPart', { post: @post } %>
 
 
+     <% if user_signed_in? %>
+     <%= render "comments/form" %>
+     <% else %>
+     <div class="please">
+     <p>Пожалуйста, <%= link_to 'войдите', new_user_session_path %> или <%= link_to 'зарегистрируйтесь', new_user_registration_path %> чтобы оставить комментарий.</p>
+     </div>
+    <% end %>
+    <%= render @post.comments.select(&:persisted?) %>
 
-  <% if user_signed_in? && current_user.isadmin == false %>
-  <% pre_favorite = @post.favorites.find { |favorite| favorite.user_id == current_user.id} %>
-  <% if pre_favorite %>
-  <%= button_to 'Удалить из избранного',  post_favorite_path(@post, pre_favorite), method: :delete, class: "button_create_comment" %>
-  <% else %>
-  <%= button_to 'Добавить в избранное', post_favorites_path(@post), method: :post, class: "button_create_comment" %>
+<div class="recs">
+    <h2>Заведения с похожей кухней:</h2>
+    <div class="postrecsrow">
+      <div class="postrec1"></div>
+      <div class="postrec2"></div>
+      <div class="postrec3"></div>
+      <div class="postrec4"></div>
+    </div>
+</div>
 
-  <% end %>
-  <% end %>
+
+
+
+
+
+
 
   <div class="edit_back_buttons">
 

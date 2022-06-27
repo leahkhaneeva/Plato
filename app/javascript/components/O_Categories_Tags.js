@@ -12,6 +12,12 @@ class O_Categories_Tags extends React.Component {
           <M_Categories_European />
           <M_Categories_Eastern />
           <M_Categories_Northern />
+          <div className="culture_container">
+          <div className="northernnnplate"></div>
+          </div>
+          <div className="culture_container">
+          <div className="africanplate"></div>
+      </div>
       </div>
     );
   }

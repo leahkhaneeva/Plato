@@ -4,12 +4,7 @@ class M_Categories_Eastern extends React.Component {
   render () {
     return (
       <div className="culture_container">
-          <div className="easterntop">
              <div className="easternplate"></div>
-          </div>
-          <div className="culturebottom">
-          <p>Восточная</p>
-          </div>
       </div>
     );
   }

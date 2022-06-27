@@ -1,19 +1,15 @@
 
-<p class="comments_author">
-  <b>Автор:</b>
-  <%= User.find(comment.user_id).username %>
-</p>
 
-<p>
-	<b>Комментарий:</b>
-	<%= comment.body %>
-</p>
+
+<div class="commentauthorbodybox">
+<h3>Автор: <%= User.find(comment.user_id).username %></h3>
+<p><%= comment.body %></p>
+</div>
+
 <% if user_signed_in? %>
-<p>
-	<p>
+<div class="deletecomment">
   <%= link_to 'Удалить комментарий', [comment.post, comment],
-               :confirm => 'Вы уверены?',
-               :method => :delete %>
-</p>
+             :confirm => 'Вы уверены?',
+             :method => :delete %>
+</div>
 <% end %>
-</p>

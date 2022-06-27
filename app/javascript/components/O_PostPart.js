@@ -16,18 +16,30 @@ class O_PostPart extends React.Component {
       <div className="inner_post_container">
       <div className="show_image_container">
       <img src={this.props.post.image.url}/>
-      <div className="locationcard"></div>
       <div className="post_photo_points"></div>
       </div>
+       <div className="pattern"></div>
 
-      <div className="flagtag">
-          <div className="flagicon"></div>
-          <div className="posttag"><h6>{this.props.post.name}</h6></div>
-      </div>
+         <div className="location">
+            <div className="locationicon"></div>
+            <div className="placename">Maroon</div>
+            <div className="placeaddresse">Кутузовский просп., 2/1 строение 6, Москва</div>
+         </div>
+        <div className="flagtag">
+           <div className="flagicon">
+           
+
+           </div>
+        </div>
+
         <p dangerouslySetInnerHTML={{__html: this.props.post.content}} />
         <div className="postdate"><p>21.01.2022</p></div>
         <a href={postLink}/>
       </div>
+
+
+
+
       </div>
 
     );
